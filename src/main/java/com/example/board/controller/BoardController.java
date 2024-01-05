@@ -94,6 +94,8 @@ public class BoardController {
         Board boardTemp = boardService.boardView(id);
         boardTemp.setTitle(board.getTitle());
         boardTemp.setContent(board.getContent());
+        // 24.01.05
+        boardTemp.setWriter(board.getWriter());
 
         boardService.write(boardTemp);
 

@@ -13,23 +13,72 @@
     }
 
     .layout input {
-        width: 100%;
+        width: 200%;
         box-sizing: border-box;
+        height: 30px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        font-size: 14px;
+        color: #333;
+        background-color: #fff;
     }
 
     .layout textarea {
-        width: 100%;
+        width: 200%;
+        box-sizing: border-box;
         margin-top: 10px;
         min-height:  300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        font-size: 14px;
+        color: #333;
+        background-color: #fff;
     }
+
+    .btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        margin: 0 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
 </style>
 
 <body>
 <div class="layout">
     <form th:action="@{/board/update/{id}(id = ${board.id})}" method="post">
-        <input name="title" type="text" th:value="${board.title}">
-        <textarea name="content" th:text="${board.content}"></textarea>
-        <button type="subit">수정</button>
+        <h1 style="margin-left: 200px">글 수정</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>글제목</th>
+                <td colspan="3"><input name="title" type="text" th:value="${board.title}"></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>글내용&nbsp;&nbsp;</th>
+                <td colspan="3"><textarea name="content" th:text="${board.content}"></textarea></td>
+            </tr>
+            <tr>
+                <th>작성자</th>
+                <td colspan="3"><input name="writer" type="text" th:value="${board.writer}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <button type="submit" class="btn btn-primary" style="background-color: green; margin-left: 200px">수정반영하기</button>
     </form>
 </div>
 </body>

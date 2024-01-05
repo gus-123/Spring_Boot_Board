@@ -11,15 +11,55 @@
         margin: 0 auto;
         margin-top: 40px;
     }
+
+    .layout input {
+        width: 200px;
+        box-sizing: border-box;
+        height: 30px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        font-size: 14px;
+        color: #333;
+        background-color: #fff;
+    }
+
+    .page {
+        margin-left: 150px;
+    }
+
+    .search {
+        margin-left: 85px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        margin: 0 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
 </style>
 
 <body>
     <div class="layout">
+        <h1 style="margin-left: 80px">게시판 작성 페이지</h1>
         <table>
             <thead>
                 <tr>
                     <th>글번호</th>
                     <th>제목</th>
+                    <!-- 24.01.05 -->
+                    <th>작성자</th>
+                    <th>작성일</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,18 +68,28 @@
                     <td>                                  <!-- localhost:8080/board/view?id=board.id -->
                         <a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}"></a>
                     </td>
+                    <!-- 24.01.05 -->
+                    <td th:text="${board.writer}">작성자</td>
+                    <td th:text="${board.cre_Date}"></td>
                 </tr>
             </tbody>
         </table>
-
+        <br>
+        <div class="page">
         <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
             <a th:if="${page != nowPage}" th:href="@{/board/list(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a>
             <strong th:if="${page == nowPage}" th:text="${page}" style="color: red"></strong>
         </th:block>
-        <form th:action="@{/board/list}" method="get">
+        </div>
+        <br>
+        <form th:action="@{/board/list}" method="get" class="search">
             <input type="text" name="searchKeyword">
-            <button type="submit">검색</button>
+            <button type="submit" class="btn btn-primary" style="background-color: #cccccc">검색</button>
         </form>
+        <br>
+        <!--24.01.05-->
+        <a th:href="@{/board/write}" class="btn btn-primary">글쓰기</a>
+        <a th:href="@{/board/list}" class="btn btn-primary" style="background-color: crimson">홈</a>
     </div>
 </body>
 </html>
