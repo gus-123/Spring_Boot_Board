@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<script th:inline="javascript">
+    // 타임리프 3.0버전부터는 스크립트 사용 시 CDATA 구문을 작성하지 않아도 됨.
+    /*<![CDATA[*/
+
+    var message = [[${message}]];
+    alert(message);
+
+    location.replace([[${searchUrl}]]);
+
+    /*]]>*/
+</script>
+
+<body>
+
+</body>
+</html>
